@@ -42,7 +42,12 @@ def vote(request, id):
     
 def results(request, id):
     poll = Poll.objects.get(pk=id)
+    labels=[poll.option_one, poll.option_two, poll.option_three]
+    data=[poll.count_one,poll.count_two,poll.count_three]
+    
     context = {
-        'poll' : poll
+        'poll' : poll,
+        'labels':labels,
+        'data':data,
     }
     return render(request, 'pollapp/results.html', context)
